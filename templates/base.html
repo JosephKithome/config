@@ -9,14 +9,27 @@ t">
 </head
 
 <body>
-<header>
-<h1><a href="{% url 'home' %}">Django blog</a></h1>
-</header>
 <div>
-{% block content %}
+    <header>
+        <div class="nav-left">
+             <h1><a href="{% url 'home' %}">Django blog</a></h1>
+        </div>
+        <div class="nav-right">
+            <a href="{% url 'post_new' %}">+ New Blog Post</a>
+        </div>
+    </header>
+     {% if user.is_authenticated %}
+    <p>Hi {{user.username}}!</p>
+    <p><a href="{% url 'logout' %}">Log out</a></p>
 
-{% endblock %}
+    {% else %}
+    <p>You are not authenticated</p>
+    <a href="{% url 'login' %}"></a>
+    {% endif%}
+{% block content %}
+{% endblock content %}
 </div>
+
 
 </body
 </html>
